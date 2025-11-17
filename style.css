@@ -419,11 +419,15 @@ body {
 
 .bar {
   width: 100%;
+  height: 140px; /* added to make bars visible */
   border-radius: 10px 10px 2px 2px;
   background: var(--accent-soft);
   position: relative;
   overflow: hidden;
+  display: flex;
+  align-items: flex-end;
 }
+
 
 .bar-fill {
   position: absolute;
@@ -530,3 +534,4 @@ body {
     flex: 1 1 calc(50% - 6px);
   }
 }
+
