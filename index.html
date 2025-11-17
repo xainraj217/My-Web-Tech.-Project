@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FitTrack Pro — Personal Fitness & Wellness Dashboard</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="app-header">
+    <h1>FitTrack Pro</h1>
+    <div class="header-right">
+      <span class="live-clock-label">Current Time</span>
+      <span id="liveClock" class="live-clock">--:--:--</span>
+    </div>
+  </header>
+
+  <nav class="app-nav">
+    <button class="nav-btn active" data-target="overview">Daily Overview</button>
+    <button class="nav-btn" data-target="activities">Activity Log</button>
+    <button class="nav-btn" data-target="meals">Meal Planner</button>
+    <button class="nav-btn" data-target="insights">Insights & Summary</button>
+  </nav>
+
+  <main class="app-main">
+    <!-- Page 1: Daily Wellness Overview -->
+    <section id="overview" class="page-section active">
+      <h2>Daily Wellness Overview</h2>
+      <div class="cards-grid">
+        <div class="card">
+          <h3>Steps Taken</h3>
+          <div class="progress-container">
+            <div class="progress-label">
+              <span id="stepsValue">0</span> / <span id="stepsGoal">0</span>
+            </div>
+            <div class="progress-bar">
+              <div id="stepsBar" class="progress-fill"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Calories Burned</h3>
+          <div class="progress-container">
+            <div class="progress-label">
+              <span id="caloriesValue">0</span> kcal
+            </div>
+            <div class="progress-bar">
+              <div id="caloriesBar" class="progress-fill"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Water Intake</h3>
+          <div class="progress-container">
+            <div class="progress-label">
+              <span id="waterValue">0</span> / <span id="waterGoal">0</span> L
+            </div>
+            <div class="progress-bar">
+              <div id="waterBar" class="progress-fill"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Page 2: Activity Log -->
+    <section id="activities" class="page-section">
+      <h2>Activity Log</h2>
+
+      <div class="card">
+        <h3>Filter by Time of Day</h3>
+        <div class="filter-group">
+          <button class="filter-btn active" data-filter="All">All</button>
+          <button class="filter-btn" data-filter="Morning">Morning</button>
+          <button class="filter-btn" data-filter="Afternoon">Afternoon</button>
+          <button class="filter-btn" data-filter="Evening">Evening</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Activities</h3>
+        <ul id="activityList" class="activity-list">
+          <!-- Filled by JS -->
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>Add New Activity</h3>
+        <form id="activityForm" class="form-grid">
+          <div class="form-field">
+            <label for="activityName">Activity Name</label>
+            <input type="text" id="activityName" required />
+            <small class="error-msg" id="activityNameError"></small>
+          </div>
+          <div class="form-field">
+            <label for="activityDuration">Duration (mins)</label>
+            <input type="number" id="activityDuration" min="1" required />
+            <small class="error-msg" id="activityDurationError"></small>
+          </div>
+          <div class="form-field">
+            <label for="activityCalories">Calories Burned</label>
+            <input type="number" id="activityCalories" min="0" required />
+            <small class="error-msg" id="activityCaloriesError"></small>
+          </div>
+          <div class="form-field">
+            <label for="activityTimeOfDay">Time of Day</label>
+            <select id="activityTimeOfDay">
+              <option value="Morning">Morning</option>
+              <option value="Afternoon">Afternoon</option>
+              <option value="Evening">Evening</option>
+            </select>
+          </div>
+          <div class="form-actions">
+            <button type="submit" class="primary-btn">Add Activity</button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <!-- Page 3: Meal Planner -->
+    <section id="meals" class="page-section">
+      <h2>Meal Planner</h2>
+      <div class="cards-grid">
+        <div class="card">
+          <h3>Breakfast</h3>
+          <ul id="breakfastList" class="meal-list">
+            <!-- Filled by JS -->
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Lunch</h3>
+          <ul id="lunchList" class="meal-list">
+            <!-- Filled by JS -->
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Dinner</h3>
+          <ul id="dinnerList" class="meal-list">
+            <!-- Filled by JS -->
+          </ul>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Add Meal</h3>
+        <form id="mealForm" class="form-grid">
+          <div class="form-field">
+            <label for="mealName">Meal Name</label>
+            <input type="text" id="mealName" required />
+            <small class="error-msg" id="mealNameError"></small>
+          </div>
+          <div class="form-field">
+            <label for="mealCalories">Calories</label>
+            <input type="number" id="mealCalories" min="0" required />
+            <small class="error-msg" id="mealCaloriesError"></small>
+          </div>
+          <div class="form-field">
+            <label for="mealType">Meal Type</label>
+            <select id="mealType">
+              <option value="breakfast">Breakfast</option>
+              <option value="lunch">Lunch</option>
+              <option value="dinner">Dinner</option>
+            </select>
+          </div>
+          <div class="form-actions">
+            <button type="submit" class="primary-btn">Add Meal</button>
+          </div>
+        </form>
+      </div>
+
+      <div class="card total-calories-card">
+        <h3>Total Daily Calories</h3>
+        <p id="totalCalories">0 kcal</p>
+      </div>
+    </section>
+
+    <!-- Page 4: Insights & Summary -->
+    <section id="insights" class="page-section">
+      <h2>Insights & Summary</h2>
+
+      <div class="cards-grid">
+        <div class="card">
+          <h3>Weekly Activity (Minutes)</h3>
+          <div id="weeklyActivityGraph" class="bar-graph">
+            <!-- Filled by JS -->
+          </div>
+        </div>
+        <div class="card">
+          <h3>Weekly Calorie Burn</h3>
+          <div id="weeklyCaloriesGraph" class="bar-graph">
+            <!-- Filled by JS -->
+          </div>
+        </div>
+      </div>
+
+      <div class="card insights-actions">
+        <button id="downloadSummaryBtn" class="secondary-btn">
+          Download Summary (Simulated)
+        </button>
+        <button id="resetDashboardBtn" class="danger-btn">
+          Reset Dashboard
+        </button>
+      </div>
+    </section>
+  </main>
+
+  <!-- Custom Modal Overlay -->
+  <div id="modalOverlay" class="modal-overlay hidden">
+    <div class="modal">
+      <h3 id="modalTitle">Notification</h3>
+      <p id="modalMessage">Message goes here</p>
+      <button id="modalCloseBtn" class="primary-btn">Close</button>
+    </div>
+  </div>
+
+  <footer class="app-footer">
+    <span>FitTrack Pro — Static Demo Dashboard</span>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
