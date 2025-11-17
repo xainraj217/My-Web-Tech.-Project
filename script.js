@@ -481,7 +481,6 @@ function renderBarGraph(containerId, data, valueKey) {
 
     const barWrapper = document.createElement("div");
     barWrapper.className = "bar";
-    barWrapper.style.height = "100%";
 
     const barFill = document.createElement("div");
     barFill.className = "bar-fill";
@@ -600,3 +599,4 @@ document.addEventListener("DOMContentLoaded", () => {
   renderInsights();
   setupInsightsActions();
 });
+
